@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/wasshoi/{str}', 'WasshoiController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

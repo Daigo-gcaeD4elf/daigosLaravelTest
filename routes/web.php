@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/wasshoi/{str}', 'WasshoiController@index');
+Route::get('/wasshoi/{str?}', 'WasshoiController@index');
 
 Auth::routes();
 

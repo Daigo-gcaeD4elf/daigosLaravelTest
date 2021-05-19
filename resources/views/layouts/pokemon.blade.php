@@ -26,6 +26,6 @@
     </div>
     <h1>EBA ポケモン交換支援ツール</h1>
     @yield('content')
-    <p style="text-align: center;">ダイゴ頑張って作るでありやす</p>
+    <p style="text-align: center;">ダイゴが頑張って作っております</p>
 </body>
 </html>

@@ -6,13 +6,15 @@
     <p>ここはトップページやで！</p>
     <table>
         <tr>
-            <th>タイプ</th>
-            <th>タイプ略称</th>
+            <th>ポケモン</th>
+            <th>タイプ1</th>
+            <th>タイプ2</th>
         </tr>
-        @foreach ($pokemonTypes as $item)
+        @foreach ($pokemon as $item)
             <tr>
-                <td>{{ $item['type_name'] }}</td>
-                <td>{{ $item['type_abbreviation'] }}</td>
+                <td>{{ $item->pokemon_name }}</td>
+                <td>{{ $item->type_1 }}</td>
+                <td>{{ $item->getType2() }}</td>
             </tr>
         @endforeach
     </table>

@@ -14,18 +14,20 @@ class CreatePokemonTable extends Migration
     public function up()
     {
         Schema::create('pokemon', function (Blueprint $table) {
+            $table->unsignedInteger('id')->unique();
             $table->unsignedInteger('pokedex_no');
-            $table->unsignedSmallInteger('form');
-            $table->unsignedSmallInteger('mega_evolve');
-            $table->unsignedSmallInteger('region_form');
+            $table->unsignedSmallInteger('form')->default(0);
+            $table->unsignedSmallInteger('mega_evolve')->default(0);
+            $table->unsignedSmallInteger('region_form')->default(0);
             $table->string('pokemon_name');
+            $table->unsignedSmallInteger('generation');
             $table->unsignedSmallInteger('type_1');
             $table->unsignedSmallInteger('type_2');
             $table->unsignedSmallInteger('egg_group_1');
             $table->unsignedSmallInteger('egg_group_2');
-            $table->timestamps();
+            $table->unsignedSmallInteger('experience_type');
 
-            $table->primary(['pokedex_no', 'form', 'mega_evolve', 'region_form']);
+            $table->primary(['id']);
         });
     }
 

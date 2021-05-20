@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test/menu', 'Test\MenuController@index')->name('menu');
+
+Route::get('/lookingForPokemon', 'LookingForPokemonController@index')->name('register');

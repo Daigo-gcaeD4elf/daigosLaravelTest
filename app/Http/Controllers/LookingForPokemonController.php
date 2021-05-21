@@ -25,4 +25,26 @@ class LookingForPokemonController extends Controller
     {
         return view('lookingForPokemon');
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function conf(Request $request)
+    {
+        return view('lookingForPokemonConf', ['request' => $request]);
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function done(Request $request)
+    {
+        if (!empty($request->back)) {
+            return view('lookingForPokemon');
+        }
+        return view('lookingForPokemonDone', ['request' => $request]);
+    }
 }

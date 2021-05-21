@@ -4,6 +4,9 @@
 
 @section('content')
     <p>ここはトップページやで！</p>
+    <div>
+        <a href="{{ url('/lookingForPokemon') }}">欲しいポケモンを登録する</a>
+    </div>
     <table>
         <tr>
             <th>ポケモン</th>

@@ -3,8 +3,8 @@
 @section('title', 'Top')
 
 @section('content')
-    <p>登録画面</p>
-    <form action="/lookingForPokemon/conf" method="post">
+    <form action="{{ url('/lookingForPokemon/conf') }}" method="post">
+        {{ csrf_field() }}
         <div>
             ポケモン<input type="text" name="pokemon" value="{{ old('pokemon') }}">
         </div>

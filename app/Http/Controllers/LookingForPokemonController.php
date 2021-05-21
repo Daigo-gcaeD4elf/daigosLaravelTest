@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\LookingForPokemon;
 
 class LookingForPokemonController extends Controller
 {
@@ -45,6 +47,12 @@ class LookingForPokemonController extends Controller
         if (!empty($request->back)) {
             return view('lookingForPokemon');
         }
+
+        LookingForPokemon::insert([
+            'user_id' => Auth::user()->id,
+            'pokemon' => $request->pokemon,
+            'move_1' => $request->move_1,
+        ]);
         return view('lookingForPokemonDone', ['request' => $request]);
     }
 }

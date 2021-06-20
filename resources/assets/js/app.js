@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('select-pokemon', require('./components/SelectPokemon.vue'));
 
 const app = new Vue({
     el: '#app'

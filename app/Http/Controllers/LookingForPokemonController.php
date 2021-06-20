@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LookingForPokemon;
+use App\Models\Pokemon;
 
 class LookingForPokemonController extends Controller
 {
@@ -25,7 +26,12 @@ class LookingForPokemonController extends Controller
      */
     public function index()
     {
-        return view('lookingForPokemon');
+        $pokemon = Pokemon::select('id', 'pokemon_name', 'pokemon_type_1.type_name AS type_1', 'pokemon_type_2.type_name AS type_2')
+            ->leftJoin('pokemon_types AS pokemon_type_1', 'pokemon.type_1', '=', 'pokemon_type_1.type_code')
+            ->leftJoin('pokemon_types AS pokemon_type_2', 'pokemon.type_2', '=', 'pokemon_type_2.type_code')
+            ->get();
+
+        return view('lookingForPokemon', ['pokemon' => $pokemon]);
     }
 
     /**

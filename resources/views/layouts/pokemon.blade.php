@@ -26,7 +26,7 @@
             {{ csrf_field() }}
         </form>
     </div>
-    <h1>EBA ポケモン交換支援ツール</h1>
+    <h1 class="text-green-400 bg-yellow-300">EBA ポケモン交換支援ツール</h1>
     @yield('content')
     <p style="text-align: center;">ダイゴが頑張って作っております</p>
     <script src="{{ asset('js/app.js') }}"></script>

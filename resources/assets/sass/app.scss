@@ -7,3 +7,8 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// TailwindCSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

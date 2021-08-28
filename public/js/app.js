@@ -45292,14 +45292,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             pokemonId: '',
-            toggleTable: true,
-            list: '',
-            foo: ''
+            pokemonName: '',
+            pokemonList: []
         };
     },
     props: {
@@ -45313,28 +45320,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        switchTable: function switchTable() {
-            this.toggleTable = !this.toggleTable;
-        },
         editTable: function editTable(e) {
             var _this = this;
 
-            this.foo = e.target.value;
-            if (this.foo === '') {
-                this.list = '';
+            this.pokemonName = e.target.value;
+            this.pokemonList = [];
+            if (this.pokemonName === '') {
                 return;
             }
 
-            var tableTag = '';
+            var i = 0;
             this.pokemon.forEach(function (element) {
-                if (element.pokemon_name.indexOf(_this.foo) > -1) {
-                    tableTag += '<tr><td v-bind:value="' + element.id + '" v-on:click="choosePokemon">' + element.pokemon_name + '</td></tr>';
+                if (element.pokemon_name.indexOf(_this.pokemonName) > -1) {
+                    _this.pokemonList[i] = {
+                        id: element.id,
+                        name: element.pokemon_name
+                    };
+                    i = i + 1;
                 }
             });
-            this.list = tableTag;
         },
-        choosePokemon: function choosePokemon() {
-            console.log('pokemonを選んだ！！');
+        choosePokemon: function choosePokemon(pokemonId, pokemonName) {
+            console.log('selected id : ' + pokemonId);
+            this.pokemonName = pokemonName;
+            this.pokemonId = pokemonId;
+            this.pokemonList = [];
         }
     }
 });
@@ -45348,19 +45358,44 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("input", {
-      attrs: { type: "hidden", name: "pokemon_id", value: "pokemonId" }
-    }),
-    _vm._v("\n    ポケモン"),
-    _c("input", {
-      attrs: { type: "text", name: "pokemon" },
-      domProps: { value: _vm.foo },
-      on: { input: _vm.editTable }
-    }),
-    _vm._v(" "),
-    _vm.toggleTable
-      ? _c("div", [_c("table", { domProps: { innerHTML: _vm._s(_vm.list) } })])
-      : _vm._e()
+    _c(
+      "table",
+      [
+        _c("tr", [
+          _c("td", [_vm._v("ポケモン")]),
+          _vm._v(" "),
+          _c("td", [
+            _c("input", {
+              attrs: { type: "hidden", name: "pokemon_id" },
+              domProps: { value: _vm.pokemonId }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "text", name: "pokemon" },
+              domProps: { value: _vm.pokemonName },
+              on: { input: _vm.editTable }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.pokemonList, function(list) {
+          return _c("tr", { key: list.id }, [
+            _c("td"),
+            _vm._v(" "),
+            _c("td", {
+              attrs: { value: list.id },
+              domProps: { textContent: _vm._s(list.name) },
+              on: {
+                click: function($event) {
+                  return _vm.choosePokemon(list.id, list.name)
+                }
+              }
+            })
+          ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []

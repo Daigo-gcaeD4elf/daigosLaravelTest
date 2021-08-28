@@ -1,10 +1,18 @@
 <template>
     <div class="container">
-        <input type="hidden" name="pokemon_id" value="pokemonId">
-        ポケモン<input type="text" name="pokemon" v-bind:value="foo" v-on:input="editTable">
-        <div v-if="toggleTable">
-            <table v-html="list"></table>
-        </div>
+        <table>
+            <tr>
+                <td>ポケモン</td>
+                <td>
+                    <input type="hidden" name="pokemon_id" v-bind:value="pokemonId">
+                    <input type="text" name="pokemon" v-bind:value="pokemonName" v-on:input="editTable">
+                </td>
+            </tr>
+            <tr v-for="list in pokemonList" :key="list.id">
+                <td></td>
+                <td v-bind:value="list.id" v-on:click="choosePokemon(list.id, list.name)" v-text="list.name"></td>
+            </tr>
+        </table>
     </div>
 </template>
 
@@ -13,9 +21,8 @@
         data:function() {
             return {
                 pokemonId: '',
-                toggleTable:true,
-                list: '',
-                foo: '',
+                pokemonName: '',
+                pokemonList: [],
             }
         },
         props: {
@@ -28,26 +35,29 @@
             console.log(this.pokemon);
         },
         methods: {
-            switchTable: function() {
-                this.toggleTable = !this.toggleTable;
-            },
             editTable: function(e) {
-                this.foo = e.target.value;
-                if (this.foo === '') {
-                    this.list = '';
+                this.pokemonName = e.target.value;
+                this.pokemonList = [];
+                if (this.pokemonName === '') {
                     return;
                 }
 
-                let tableTag = '';
+                let i = 0;
                 this.pokemon.forEach(element => {
-                    if (element.pokemon_name.indexOf(this.foo) > -1 ) {
-                        tableTag += `<tr><td v-bind:value="${element.id}" v-on:click="choosePokemon">${element.pokemon_name}</td></tr>`
+                    if (element.pokemon_name.indexOf(this.pokemonName) > -1 ) {
+                        this.pokemonList[i] = {
+                            id : element.id,
+                            name : element.pokemon_name,
+                        }
+                        i = i + 1;
                     }
                 });
-                this.list = tableTag;
             },
-            choosePokemon: function() {
-                console.log('pokemonを選んだ！！');
+            choosePokemon: function(pokemonId, pokemonName) {
+                console.log(`selected id : ${pokemonId}`);
+                this.pokemonName = pokemonName;
+                this.pokemonId = pokemonId;
+                this.pokemonList = [];
             },
         }
     }

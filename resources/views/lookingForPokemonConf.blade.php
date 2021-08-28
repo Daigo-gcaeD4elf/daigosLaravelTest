@@ -8,7 +8,7 @@
         <p>以下の内容で登録します！！</p>
         <div>
             ポケモン：{{ $request->pokemon }}
-            <input type="hidden" name="pokemon" value="{{ $request->pokemon }}">
+            <input type="hidden" name="pokemon_id" value="{{ $request->pokemon_id }}">
         </div>
         <div>
             わざ：{{ $request->move_1 }}
@@ -18,5 +18,6 @@
             <input type="submit" name="submit" value="確定">
             <input type="submit" name="back" value="いやまてよ？">
         </div>
+        <div id="app"></div>
     </form>
 @endsection

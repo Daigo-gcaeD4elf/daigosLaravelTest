@@ -6,9 +6,6 @@
     <form action="{{ url('/lookingForPokemon/conf') }}" method="post" autocomplete="off">
         {{ csrf_field() }}
         <div>
-            ポケモン<input type="text" name="pokemon" value="{{ old('pokemon') }}">
-        </div>
-        <div>
             わざ<input type="text" name="move_1" value="{{ old('move_1') }}">
         </div>
         <div>

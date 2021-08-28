@@ -51,12 +51,12 @@ class LookingForPokemonController extends Controller
     public function done(Request $request)
     {
         if (!empty($request->back)) {
-            return view('lookingForPokemon');
+            return redirect()->route('register');
         }
 
         LookingForPokemon::insert([
             'user_id' => Auth::user()->id,
-            'pokemon' => $request->pokemon,
+            'pokemon' => $request->pokemon_id,
             'move_1' => $request->move_1,
         ]);
         return view('lookingForPokemonDone', ['request' => $request]);

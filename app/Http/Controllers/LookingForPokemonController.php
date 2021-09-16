@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LookingForPokemon;
 use App\Models\Pokemon;
+use App\Models\PokemonMove;
 
 class LookingForPokemonController extends Controller
 {
@@ -31,7 +32,10 @@ class LookingForPokemonController extends Controller
             ->leftJoin('pokemon_types AS pokemon_type_2', 'pokemon.type_2', '=', 'pokemon_type_2.type_code')
             ->get();
 
-        return view('lookingForPokemon', ['pokemon' => $pokemon]);
+        $pokemonMoves = PokemonMove::select('id', 'move_name')
+            ->get();
+
+        return view('lookingForPokemon', ['pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
     }
 
     /**

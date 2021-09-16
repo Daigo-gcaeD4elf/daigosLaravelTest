@@ -12,7 +12,7 @@
             <input type="submit" name="submit" value="確定">
         </div>
         <div id="app">
-            <select-pokemon v-bind:pokemon='{{$pokemon}}'></select-pokemon>
+            <select-pokemon v-bind:pokemon_moves="{{$pokemonMoves}}" v-bind:pokemon="{{$pokemon}}"></select-pokemon>
         </div>
     </form>
 @endsection

@@ -45300,27 +45300,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             pokemonId: '',
             pokemonName: '',
-            pokemonList: []
+            pokemonList: [],
+            pokemonMove1Id: '',
+            pokemonMove1Name: '',
+            pokemonMove1List: []
         };
     },
     props: {
         pokemon: {
             type: Array,
             required: true
+        },
+        pokemon_moves: {
+            type: Array,
+            required: true
         }
     },
     mounted: function mounted() {
         console.log(this.pokemon);
+        console.log(this.pokemon_moves);
     },
 
     methods: {
-        editTable: function editTable(e) {
+        editPokemonTable: function editPokemonTable(e) {
             var _this = this;
 
             this.pokemonName = e.target.value;
@@ -45339,12 +45360,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     i = i + 1;
                 }
             });
+            console.log(this.pokemonList);
         },
         choosePokemon: function choosePokemon(pokemonId, pokemonName) {
             console.log('selected id : ' + pokemonId);
             this.pokemonName = pokemonName;
             this.pokemonId = pokemonId;
             this.pokemonList = [];
+        },
+        editPokemonMove1Table: function editPokemonMove1Table(e) {
+            var _this2 = this;
+
+            this.pokemonMove1Name = e.target.value;
+            this.pokemonMove1List = [];
+            if (this.pokemonMove1Name === '') {
+                return;
+            }
+
+            var i = 0;
+            this.pokemon_moves.forEach(function (element) {
+                if (element.move_name.indexOf(_this2.pokemonMove1Name) > -1) {
+                    _this2.pokemonMove1List[i] = {
+                        id: element.id,
+                        name: element.move_name
+                    };
+                    i = i + 1;
+                }
+            });
+
+            console.log(this.pokemonMove1List);
+        },
+        choosePokemonMove1: function choosePokemonMove1(move1Id, move1Name) {
+            console.log('selected id : ' + move1Id);
+            this.pokemonMove1Name = move1Name;
+            this.pokemonMove1Id = move1Id;
+            this.pokemonMove1List = [];
         }
     }
 });
@@ -45373,7 +45423,7 @@ var render = function() {
             _c("input", {
               attrs: { type: "text", name: "pokemon" },
               domProps: { value: _vm.pokemonName },
-              on: { input: _vm.editTable }
+              on: { input: _vm.editPokemonTable }
             })
           ])
         ]),
@@ -45388,6 +45438,45 @@ var render = function() {
               on: {
                 click: function($event) {
                   return _vm.choosePokemon(list.id, list.name)
+                }
+              }
+            })
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "table",
+      [
+        _c("tr", [
+          _c("td", [_vm._v("わざ1")]),
+          _vm._v(" "),
+          _c("td", [
+            _c("input", {
+              attrs: { type: "hidden", name: "pokemon_move_1_id" },
+              domProps: { value: _vm.pokemonMove1Id }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "text", name: "pokemon_move_1" },
+              domProps: { value: _vm.pokemonMove1Name },
+              on: { input: _vm.editPokemonMove1Table }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.pokemonMove1List, function(move1List) {
+          return _c("tr", { key: move1List.id }, [
+            _c("td"),
+            _vm._v(" "),
+            _c("td", {
+              attrs: { value: move1List.id },
+              domProps: { textContent: _vm._s(move1List.name) },
+              on: {
+                click: function($event) {
+                  return _vm.choosePokemonMove1(move1List.id, move1List.name)
                 }
               }
             })

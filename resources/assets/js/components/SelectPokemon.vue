@@ -17,13 +17,13 @@
             <tr>
                 <td>わざ1</td>
                 <td>
-                    <input type="hidden" name="pokemon_move_1_id" v-bind:value="pokemonMove1Id">
-                    <input type="text" name="pokemon_move_1" v-bind:value="pokemonMove1Name" v-on:input="editPokemonMove1Table">
+                    <input type="hidden" name="move_1_id" v-bind:value="move1Id">
+                    <input type="text" name="move_1" v-bind:value="move1Name" v-on:input="editMove1Table">
                 </td>
             </tr>
-            <tr v-for="move1List in pokemonMove1List" :key="move1List.id">
+            <tr v-for="move1 in move1List" :key="move1.id">
                 <td></td>
-                <td v-bind:value="move1List.id" v-on:click="choosePokemonMove1(move1List.id, move1List.name)" v-text="move1List.name"></td>
+                <td v-bind:value="move1.id" v-on:click="chooseMove1(move1.id, move1.name)" v-text="move1.name"></td>
             </tr>
         </table>
     </div>
@@ -36,9 +36,9 @@
                 pokemonId: '',
                 pokemonName: '',
                 pokemonList: [],
-                pokemonMove1Id: '',
-                pokemonMove1Name: '',
-                pokemonMove1List: [],
+                move1Id: '',
+                move1Name: '',
+                move1List: [],
             }
         },
         props: {
@@ -81,17 +81,17 @@
                 this.pokemonId = pokemonId;
                 this.pokemonList = [];
             },
-            editPokemonMove1Table: function(e) {
-                this.pokemonMove1Name = e.target.value;
-                this.pokemonMove1List = [];
-                if (this.pokemonMove1Name === '') {
+            editMove1Table: function(e) {
+                this.move1Name = e.target.value;
+                this.move1List = [];
+                if (this.move1Name === '') {
                     return;
                 }
 
                 let i = 0;
                 this.pokemon_moves.forEach(element => {
-                    if (element.move_name.indexOf(this.pokemonMove1Name) > -1) {
-                        this.pokemonMove1List[i] = {
+                    if (element.move_name.indexOf(this.move1Name) > -1) {
+                        this.move1List[i] = {
                             id : element.id,
                             name : element.move_name,
                         }
@@ -99,13 +99,13 @@
                     }
                 });
 
-                console.log(this.pokemonMove1List);
+                console.log(this.move1List);
             },
-            choosePokemonMove1: function(move1Id, move1Name) {
+            chooseMove1: function(move1Id, move1Name) {
                 console.log(`selected id : ${move1Id}`);
-                this.pokemonMove1Name = move1Name;
-                this.pokemonMove1Id = move1Id;
-                this.pokemonMove1List = [];
+                this.move1Name = move1Name;
+                this.move1Id = move1Id;
+                this.move1List = [];
             },
         }
     }

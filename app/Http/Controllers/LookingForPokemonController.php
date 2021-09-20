@@ -61,7 +61,7 @@ class LookingForPokemonController extends Controller
         LookingForPokemon::insert([
             'user_id' => Auth::user()->id,
             'pokemon' => $request->pokemon_id,
-            'move_1' => $request->move_1,
+            'move_1' => $request->move_1_id,
         ]);
         return view('lookingForPokemonDone', ['request' => $request]);
     }

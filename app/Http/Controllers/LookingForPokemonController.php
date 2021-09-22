@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\Models\LookingForPokemon;
 use App\Models\Pokemon;
 use App\Models\PokemonMove;
@@ -27,14 +28,17 @@ class LookingForPokemonController extends Controller
      */
     public function index()
     {
+        Log::debug('=============== ポケモン情報取得 ===================');
         $pokemon = Pokemon::select('id', 'pokemon_name', 'pokemon_type_1.type_name AS type_1', 'pokemon_type_2.type_name AS type_2')
-            ->leftJoin('pokemon_types AS pokemon_type_1', 'pokemon.type_1', '=', 'pokemon_type_1.type_code')
-            ->leftJoin('pokemon_types AS pokemon_type_2', 'pokemon.type_2', '=', 'pokemon_type_2.type_code')
-            ->get();
+        ->leftJoin('pokemon_types AS pokemon_type_1', 'pokemon.type_1', '=', 'pokemon_type_1.type_code')
+        ->leftJoin('pokemon_types AS pokemon_type_2', 'pokemon.type_2', '=', 'pokemon_type_2.type_code')
+        ->get();
 
+        Log::debug('=============== 技情報取得 ===================');
         $pokemonMoves = PokemonMove::select('id', 'move_name')
-            ->get();
+        ->get();
 
+        Log::debug('=============== lookingForPokemon 表示 ===================');
         return view('lookingForPokemon', ['pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
     }
 
@@ -45,6 +49,9 @@ class LookingForPokemonController extends Controller
      */
     public function conf(Request $request)
     {
+        Log::debug('=============== lookingForPokemonConf 表示 ===================');
+        Log::debug('ほしいポケモン：'. $request['pokemon_id']);
+        Log::debug('==============================================================');
         return view('lookingForPokemonConf', ['request' => $request]);
     }
     /**
@@ -55,9 +62,13 @@ class LookingForPokemonController extends Controller
     public function done(Request $request)
     {
         if (!empty($request->back)) {
+            Log::debug('=============== 「いやまてよ」がクリックされました ===================');
             return redirect()->route('register');
         }
 
+        Log::debug('=============== 欲しいポケモンを登録します ===================');
+        Log::debug('ほしいポケモン：'. $request['pokemon_id']);
+        Log::debug('==============================================================');
         LookingForPokemon::insert([
             'user_id' => Auth::user()->id,
             'pokemon' => $request->pokemon_id,

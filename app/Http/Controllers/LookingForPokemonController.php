@@ -52,6 +52,7 @@ class LookingForPokemonController extends Controller
         Log::debug('=============== lookingForPokemonConf 表示 ===================');
         Log::debug('ほしいポケモン：'. $request['pokemon_id']);
         Log::debug('==============================================================');
+
         return view('lookingForPokemonConf', ['request' => $request]);
     }
     /**
@@ -63,12 +64,13 @@ class LookingForPokemonController extends Controller
     {
         if (!empty($request->back)) {
             Log::debug('=============== 「いやまてよ」がクリックされました ===================');
-            return redirect()->route('register');
+            return redirect()->route('lookingForPokemonTop');
         }
 
         Log::debug('=============== 欲しいポケモンを登録します ===================');
         Log::debug('ほしいポケモン：'. $request['pokemon_id']);
         Log::debug('==============================================================');
+
         LookingForPokemon::insert([
             'user_id' => Auth::user()->id,
             'pokemon' => $request->pokemon_id,

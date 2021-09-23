@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Test;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,6 +18,6 @@ class MenuController extends Controller
             ->leftJoin('pokemon_types AS pokemon_type_2', 'pokemon.type_2', '=', 'pokemon_type_2.type_code')
             ->get();
 
-        return view('test/menu', ['pokemon' => $pokemon]);
+        return view('menu', ['pokemon' => $pokemon]);
     }
 }

@@ -39,7 +39,7 @@ class LookingForPokemonController extends Controller
         ->get();
 
         Log::debug('=============== lookingForPokemon 表示 ===================');
-        return view('lookingForPokemon', ['pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
+        return view('lookingForPokemon/lookingForPokemon', ['pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
     }
 
     /**
@@ -53,7 +53,7 @@ class LookingForPokemonController extends Controller
         Log::debug('ほしいポケモン：'. $request['pokemon_id']);
         Log::debug('==============================================================');
 
-        return view('lookingForPokemonConf', ['request' => $request]);
+        return view('lookingForPokemon/lookingForPokemonConf', ['request' => $request]);
     }
     /**
      * Show the application dashboard.
@@ -76,6 +76,6 @@ class LookingForPokemonController extends Controller
             'pokemon' => $request->pokemon_id,
             'move_1' => $request->move_1_id,
         ]);
-        return view('lookingForPokemonDone', ['request' => $request]);
+        return view('lookingForPokemon/lookingForPokemonDone', ['request' => $request]);
     }
 }

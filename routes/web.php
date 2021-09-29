@@ -22,6 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/menu', 'MenuController@index')->name('menu');
 
-Route::get('/lookingForPokemon', 'LookingForPokemonController@index')->name('lookingForPokemonTop');
-Route::post('/lookingForPokemon/conf', 'LookingForPokemonController@conf');
-Route::post('/lookingForPokemon/done', 'LookingForPokemonController@done');
+Route::get('/lookingForPokemon/{lookingForPokemonId?}', 'LookingForPokemonController@index')->name('lookingForPokemonTop');
+Route::post('/lookingForPokemon/conf/{lookingForPokemonId?}', 'LookingForPokemonController@conf');
+Route::post('/lookingForPokemon/done/{lookingForPokemonId?}', 'LookingForPokemonController@done');

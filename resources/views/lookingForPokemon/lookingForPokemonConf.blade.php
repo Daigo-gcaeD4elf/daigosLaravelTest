@@ -3,7 +3,7 @@
 @section('title', 'Top')
 
 @section('content')
-    <form action="{{ url('/lookingForPokemon/done') }}" method="post">
+    <form action="{{ url('/lookingForPokemon/done/'. $lookingForPokemonId) }}" method="post">
         {{ csrf_field() }}
         <p>以下の内容で登録します！！</p>
         <div>

@@ -12,6 +12,9 @@ class LookingForPokemon extends Model
      * @var string
      */
     protected $table = 'looking_for_pokemon';
+    protected $guarded = [
+        'id',
+    ];
 
     /**
      * nullの場合、「希望なし」表記にする

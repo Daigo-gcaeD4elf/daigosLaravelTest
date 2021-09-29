@@ -74,14 +74,15 @@ class LookingForPokemonController extends Controller
         Log::debug('==============================================================');
 
         // 新規登録 or 更新
+        $table = new LookingForPokemon;
         if  ($lookingForPokemonId === 'new') {
-            LookingForPokemon::insert([
+            $table->create([
                 'user_id' => Auth::user()->id,
                 'pokemon' => $request->pokemon_id,
                 'move_1' => $request->move_1_id,
             ]);
         } else {
-            LookingForPokemon::where('id', '=', $lookingForPokemonId)->update([
+            $table->where('id', '=', $lookingForPokemonId)->update([
                 'pokemon' => $request->pokemon_id,
                 'move_1' => $request->move_1_id,
             ]);

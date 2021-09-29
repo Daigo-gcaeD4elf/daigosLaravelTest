@@ -9,15 +9,22 @@
     </div>
     <table>
         <tr>
-            <th>ポケモン</th>
-            <th>タイプ1</th>
-            <th>タイプ2</th>
+            <th colspan="5" style="text-align:center">あなたが登録したポケモン</th>
         </tr>
-        @foreach ($pokemon as $item)
+        <tr>
+            <th>ポケモン</th>
+            <th>わざ1</th>
+            <th>わざ2</th>
+            <th>わざ3</th>
+            <th>わざ4</th>
+        </tr>
+        @foreach ($lookingForPokemonFromYou as $item)
             <tr>
                 <td>{{ $item->pokemon_name }}</td>
-                <td>{{ $item->type_1 }}</td>
-                <td>{{ $item->getType2() }}</td>
+                <td>{{ $item->checkMove1() }}</td>
+                <td>{{ $item->checkMove2() }}</td>
+                <td>{{ $item->checkMove3() }}</td>
+                <td>{{ $item->checkMove4() }}</td>
             </tr>
         @endforeach
     </table>

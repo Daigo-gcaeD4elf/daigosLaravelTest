@@ -12,4 +12,38 @@ class LookingForPokemon extends Model
      * @var string
      */
     protected $table = 'looking_for_pokemon';
+
+    /**
+     * nullの場合、「希望なし」表記にする
+     *
+     * @param string $str
+     * @return string
+     */
+    private function _checkNull($str)
+    {
+        if(is_null($str)) {
+            return '希望なし';
+        }
+        return $str;
+    }
+
+    public function checkMove1()
+    {
+        return $this->_checkNull($this->move_1);
+    }
+
+    public function checkMove2()
+    {
+        return $this->_checkNull($this->move_2);
+    }
+
+    public function checkMove3()
+    {
+        return $this->_checkNull($this->move_3);
+    }
+
+    public function checkMove4()
+    {
+        return $this->_checkNull($this->move_4);
+    }
 }

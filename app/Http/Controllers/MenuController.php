@@ -24,7 +24,7 @@ class MenuController extends Controller
         ;
 
 
-        $lookingForPokemon2 = LookingForPokemon::all();
+        // $lookingForPokemon2 = LookingForPokemon::all();
 
         // $pokemonTypes = PokemonType::all();
         $pokemon = Pokemon::select('pokemon_name', 'pokemon_type_1.type_name AS type_1', 'pokemon_type_2.type_name AS type_2')

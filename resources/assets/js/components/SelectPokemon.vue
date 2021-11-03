@@ -31,29 +31,39 @@
 
 <script>
     export default {
+        props: {
+            pokemon: {
+                type:Array,
+                required:true,
+            },
+            pokemonMoves: {
+                type:Array,
+                required:true,
+            },
+            propsPokemonId : {
+                type:Number,
+                required:true
+            },
+            propsPokemonName : {
+                type:String,
+                required:true
+            },
+        },
         data:function() {
             return {
-                pokemonId: '',
-                pokemonName: '',
+                pokemonId: this.propsPokemonId,
+                pokemonName: this.propsPokemonName,
                 pokemonList: [],
                 move1Id: '',
                 move1Name: '',
                 move1List: [],
             }
         },
-        props: {
-            pokemon: {
-                type:Array,
-                required:true,
-            },
-            pokemon_moves: {
-                type:Array,
-                required:true,
-            },
-        },
         mounted() {
             console.log(this.pokemon);
-            console.log(this.pokemon_moves);
+            console.log(this.pokemonMoves);
+            console.log(this.pokemonId);
+            console.log(this.pokemonName);
         },
         methods: {
             editPokemonTable: function(e) {
@@ -73,10 +83,8 @@
                         i = i + 1;
                     }
                 });
-                console.log(this.pokemonList);
             },
             choosePokemon: function(pokemonId, pokemonName) {
-                console.log(`selected id : ${pokemonId}`);
                 this.pokemonName = pokemonName;
                 this.pokemonId = pokemonId;
                 this.pokemonList = [];
@@ -89,7 +97,7 @@
                 }
 
                 let i = 0;
-                this.pokemon_moves.forEach(element => {
+                this.pokemonMoves.forEach(element => {
                     if (element.move_name.indexOf(this.move1Name) > -1) {
                         this.move1List[i] = {
                             id : element.id,

@@ -45315,29 +45315,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        pokemon: {
+            type: Array,
+            required: true
+        },
+        pokemonMoves: {
+            type: Array,
+            required: true
+        },
+        propsPokemonId: {
+            type: Number,
+            required: true
+        },
+        propsPokemonName: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         return {
-            pokemonId: '',
-            pokemonName: '',
+            pokemonId: this.propsPokemonId,
+            pokemonName: this.propsPokemonName,
             pokemonList: [],
             move1Id: '',
             move1Name: '',
             move1List: []
         };
     },
-    props: {
-        pokemon: {
-            type: Array,
-            required: true
-        },
-        pokemon_moves: {
-            type: Array,
-            required: true
-        }
-    },
     mounted: function mounted() {
         console.log(this.pokemon);
-        console.log(this.pokemon_moves);
+        console.log(this.pokemonMoves);
+        console.log(this.pokemonId);
+        console.log(this.pokemonName);
     },
 
     methods: {
@@ -45360,10 +45370,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     i = i + 1;
                 }
             });
-            console.log(this.pokemonList);
         },
         choosePokemon: function choosePokemon(pokemonId, pokemonName) {
-            console.log('selected id : ' + pokemonId);
             this.pokemonName = pokemonName;
             this.pokemonId = pokemonId;
             this.pokemonList = [];
@@ -45378,7 +45386,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             var i = 0;
-            this.pokemon_moves.forEach(function (element) {
+            this.pokemonMoves.forEach(function (element) {
                 if (element.move_name.indexOf(_this2.move1Name) > -1) {
                     _this2.move1List[i] = {
                         id: element.id,

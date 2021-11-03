@@ -38,8 +38,12 @@ class LookingForPokemonController extends Controller
         $pokemonMoves = PokemonMove::select('id', 'move_name')
         ->get();
 
+        Log::debug('=============== 登録情報取得 ===================');
+        $resisterdPokemon = LookingForPokemon::select('id', 'user_id', 'pokemon', 'move_1', 'move_2', 'move_3', 'move_4')
+        ->find($lookingForPokemonId);
+
         Log::debug('=============== lookingForPokemon 表示 ===================');
-        return view('lookingForPokemon/lookingForPokemon', ['lookingForPokemonId' => $lookingForPokemonId, 'pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
+        return view('lookingForPokemon/lookingForPokemon', ['lookingForPokemonId' => $lookingForPokemonId, 'resisterdPokemon' => $resisterdPokemon, 'pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
     }
 
     /**

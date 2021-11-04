@@ -31,6 +31,9 @@
         <div class="p-3">
             @yield('content')
         </div>
+        <div class="text-center">
+            <a href="{{ url('menu') }}">トップ画面へ</a>
+        </div>
         <p class="text-center mt-6">ダイゴが頑張って作っております</p>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

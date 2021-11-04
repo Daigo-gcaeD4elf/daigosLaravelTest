@@ -38,12 +38,15 @@ class LookingForPokemonController extends Controller
         $pokemonMoves = PokemonMove::select('id', 'move_name')
         ->get();
 
-        Log::debug('=============== 登録情報取得 ===================');
-        $resisterdPokemon = LookingForPokemon::select('id', 'user_id', 'pokemon', 'move_1', 'move_2', 'move_3', 'move_4')
-        ->find($lookingForPokemonId);
+        Log::debug('=============== 初期値情報取得 ===================');
+        // var_dump($initData);
+        if (empty($initData)) {
+            $initData = LookingForPokemon::select('id', 'user_id', 'pokemon AS pokemon_id', 'move_1 AS move_1_id ', 'move_2', 'move_3', 'move_4')
+            ->find($lookingForPokemonId);
+        }
 
         Log::debug('=============== lookingForPokemon 表示 ===================');
-        return view('lookingForPokemon/lookingForPokemon', ['lookingForPokemonId' => $lookingForPokemonId, 'resisterdPokemon' => $resisterdPokemon, 'pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
+        return view('lookingForPokemon/lookingForPokemon', ['lookingForPokemonId' => $lookingForPokemonId, 'initData' => $initData, 'pokemon' => $pokemon, 'pokemonMoves' => $pokemonMoves]);
     }
 
     /**
@@ -68,9 +71,9 @@ class LookingForPokemonController extends Controller
     {
         if (!empty($request->back)) {
             Log::debug('=============== 「いやまてよ」がクリックされました ===================');
-            return redirect()->route('lookingForPokemonTop',[
+            return redirect()->route('lookingForPokemonTop', [
                 'lookingForPokemonId' => $lookingForPokemonId,
-            ]);
+            ])->withInput();
         }
 
         Log::debug('=============== 欲しいポケモンを登録します ===================');

@@ -19,7 +19,7 @@ class LookingForPokemon extends Model
     // Pokemonテーブルとの紐づけ
     public function getPokemon()
     {
-        return $this->hasOne('App\Models\Pokemon', 'id', 'pokemon');
+        return $this->hasOne('App\Models\Pokemon', 'id', 'pokemon_id');
     }
 
     /**

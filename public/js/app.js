@@ -45429,7 +45429,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("input", {
-              attrs: { type: "text", name: "pokemon" },
+              attrs: { type: "text", name: "pokemon_name" },
               domProps: { value: _vm.pokemonName },
               on: { input: _vm.editPokemonTable }
             })

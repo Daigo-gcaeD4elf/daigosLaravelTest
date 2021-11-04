@@ -7,9 +7,9 @@
         {{ csrf_field() }}
         <p>以下の内容で登録します！！</p>
         <div>
-            ポケモン：{{ $request->pokemon }}
+            ポケモン：{{ $request->pokemon_name }}
             <input type="hidden" name="pokemon_id" value="{{ $request->pokemon_id }}">
-            <input type="hidden" name="pokemon" value="{{ $request->pokemon }}">
+            <input type="hidden" name="pokemon_name" value="{{ $request->pokemon_name }}">
         </div>
         <div>
             わざ：{{ $request->move_1 }}

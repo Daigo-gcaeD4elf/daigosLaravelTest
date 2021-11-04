@@ -5,7 +5,7 @@
                 <td>ポケモン</td>
                 <td>
                     <input type="hidden" name="pokemon_id" v-bind:value="pokemonId">
-                    <input type="text" name="pokemon" v-bind:value="pokemonName" v-on:input="editPokemonTable">
+                    <input type="text" name="pokemon_name" v-bind:value="pokemonName" v-on:input="editPokemonTable">
                 </td>
             </tr>
             <tr v-for="list in pokemonList" :key="list.id">

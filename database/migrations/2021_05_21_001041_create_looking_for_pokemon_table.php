@@ -16,11 +16,11 @@ class CreateLookingForPokemonTable extends Migration
         Schema::create('looking_for_pokemon', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');                           // 投稿した人
-            $table->unsignedInteger('pokemon')->default(0);               // ポケモン
-            $table->unsignedInteger('move_1')->default(0);                // わざ1
-            $table->unsignedInteger('move_2')->default(0);                // わざ2
-            $table->unsignedInteger('move_3')->default(0);                // わざ3
-            $table->unsignedInteger('move_4')->default(0);                // わざ4
+            $table->unsignedInteger('pokemon_id')->default(0);            // ポケモン
+            $table->unsignedInteger('move_1_id')->default(0);             // わざ1
+            $table->unsignedInteger('move_2_id')->default(0);             // わざ2
+            $table->unsignedInteger('move_3_id')->default(0);             // わざ3
+            $table->unsignedInteger('move_4_id')->default(0);             // わざ4
             $table->unsignedInteger('ability')->default(0);               // とくせい
             $table->unsignedSmallInteger('nature')->default(0);           // せいかく
             $table->unsignedSmallInteger('gender')->default(0);           // 性別

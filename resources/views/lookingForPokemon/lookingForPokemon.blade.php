@@ -9,8 +9,8 @@
             <select-pokemon
                 v-bind:pokemon="{{$pokemon}}"
                 v-bind:pokemon-moves="{{$pokemonMoves}}"
-                v-bind:props-pokemon-id="{{$resisterdPokemon->pokemon}}"
-                v-bind:props-pokemon-name="'{{$resisterdPokemon->getPokemon->pokemon_name}}'"
+                v-bind:props-pokemon-id="{{ (old('pokemon_id')) ? old('pokemon_id') : $initData->pokemon_id}}"
+                v-bind:props-pokemon-name="'{{ (old('pokemon_name')) ? old('pokemon_name') : $initData->getPokemon->pokemon_name}}'"
             >
             </select-pokemon>
         </div>

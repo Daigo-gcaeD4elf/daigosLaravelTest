@@ -14,12 +14,12 @@ class MenuController extends Controller
     public function index()
     {
         // 登録したポケモン
-        $lookingForPokemon1 = LookingForPokemon::select('looking_for_pokemon.id', 'looking_for_pokemon.pokemon', 'pokemon.pokemon_name', 'move1.move_name AS move_1', 'move2.move_name AS move_2', 'move3.move_name AS move_3', 'move4.move_name AS move_4')
-            ->leftjoin('pokemon AS pokemon', 'looking_for_pokemon.pokemon', '=', 'pokemon.id')
-            ->leftjoin('pokemon_moves AS move1', 'looking_for_pokemon.move_1', '=', 'move1.id')
-            ->leftjoin('pokemon_moves AS move2', 'looking_for_pokemon.move_2', '=', 'move2.id')
-            ->leftjoin('pokemon_moves AS move3', 'looking_for_pokemon.move_3', '=', 'move3.id')
-            ->leftjoin('pokemon_moves AS move4', 'looking_for_pokemon.move_4', '=', 'move4.id')
+        $lookingForPokemon1 = LookingForPokemon::select('looking_for_pokemon.id', 'looking_for_pokemon.pokemon_id', 'pokemon.pokemon_name', 'move1.move_name AS move_1', 'move2.move_name AS move_2', 'move3.move_name AS move_3', 'move4.move_name AS move_4')
+            ->leftjoin('pokemon AS pokemon', 'looking_for_pokemon.pokemon_id', '=', 'pokemon.id')
+            ->leftjoin('pokemon_moves AS move1', 'looking_for_pokemon.move_1_id', '=', 'move1.id')
+            ->leftjoin('pokemon_moves AS move2', 'looking_for_pokemon.move_2_id', '=', 'move2.id')
+            ->leftjoin('pokemon_moves AS move3', 'looking_for_pokemon.move_3_id', '=', 'move3.id')
+            ->leftjoin('pokemon_moves AS move4', 'looking_for_pokemon.move_4_id', '=', 'move4.id')
             ->paginate(10);
         ;
 

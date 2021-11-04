@@ -9,9 +9,11 @@ use App\Models\LookingForPokemon;
 use App\Models\Pokemon;
 use App\Models\PokemonMove;
 
+use MyFunc;
+
 class LookingForPokemonController extends Controller
 {
-/**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -39,9 +41,8 @@ class LookingForPokemonController extends Controller
         ->get();
 
         Log::debug('=============== 初期値情報取得 ===================');
-        // var_dump($initData);
         if (empty($initData)) {
-            $initData = LookingForPokemon::select('id', 'user_id', 'pokemon AS pokemon_id', 'move_1 AS move_1_id ', 'move_2', 'move_3', 'move_4')
+            $initData = LookingForPokemon::select('id', 'user_id', 'pokemon_id', 'move_1_id', 'move_2_id', 'move_3_id', 'move_4_id')
             ->find($lookingForPokemonId);
         }
 
